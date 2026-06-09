@@ -372,6 +372,48 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
   .footer-logo{margin:0 auto;}
 }
 
+
+
+/* ── AVISO JURÍDICO / AUTORIA / FONTE DOS DADOS ── */
+.legal-notice-card{
+  background:linear-gradient(135deg,rgba(14,27,61,0.92),rgba(22,36,81,0.86));
+  border:1px solid rgba(74,159,255,0.24);
+  border-left:4px solid var(--blue-light);
+  border-radius:18px;
+  padding:1.35rem 1.45rem;
+  margin:-0.25rem 0 1.8rem 0;
+  box-shadow:0 14px 34px rgba(0,0,0,0.14);
+}
+.legal-notice-title{
+  display:flex;align-items:center;gap:9px;
+  font-size:0.76rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--blue-light);margin-bottom:0.75rem;
+}
+.legal-notice-body{font-size:0.80rem;line-height:1.68;color:var(--off-white);opacity:0.96;}
+.legal-notice-body p{margin-bottom:0.7rem;}
+.legal-notice-body p:last-child{margin-bottom:0;}
+.legal-notice-body strong{color:var(--white);font-weight:800;}
+.legal-notice-source{
+  margin-top:0.9rem;padding:0.8rem 0.95rem;border-radius:12px;
+  background:rgba(74,159,255,0.10);border:1px solid rgba(74,159,255,0.24);
+  font-size:0.74rem;line-height:1.55;color:var(--off-white);
+}
+.legal-notice-source strong{color:var(--blue-light);}
+.footer-legal{
+  margin-top:1.2rem;padding:1rem 1.1rem;border-radius:14px;
+  background:rgba(14,27,61,0.05);border:1px solid rgba(23,107,66,0.22);
+  font-size:0.72rem;line-height:1.7;color:#102033;text-align:left;
+}
+.footer-legal p{margin:0 0 0.62rem 0;}
+.footer-legal p:last-child{margin-bottom:0;}
+.footer-legal strong{color:#041F30;font-weight:800;}
+.footer-legal a{color:#176B42;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(23,107,66,0.35);}
+.footer-legal a:hover{border-bottom-color:#176B42;}
+@media(max-width:760px){
+  .legal-notice-card{padding:1.1rem;margin-bottom:1.4rem;}
+  .footer-legal{text-align:center;}
+}
+
 @media print{
   body{background:#fff;color:#111;}
   header,.filter-panel,#placeholder,.intro-hero,footer,.cross-card,.quick-actions{display:none !important;}
@@ -430,6 +472,16 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
       </div>
     </aside>
   </section>
+  <section class="legal-notice-card" aria-label="Aviso de autoria, titularidade e fonte dos dados">
+    <div class="legal-notice-title">🔐 Autoria, titularidade e fonte dos dados</div>
+    <div class="legal-notice-body">
+      <p>Este painel utiliza como fonte primária os <strong>microdados públicos, provas, gabaritos e informações de itens do ENEM disponibilizados pelo INEP/MEC</strong>.</p>
+      <p>A NAVE não reivindica autoria sobre os dados públicos oficiais do ENEM. A autoria e a titularidade da NAVE referem-se ao <strong>tratamento, organização, cruzamento, estruturação pedagógica, interface, textos interpretativos, metodologia de análise, identidade visual, código e base derivada</strong> apresentada nesta ferramenta.</p>
+      <p>O acesso ao painel é gratuito para consulta educacional, mas a ferramenta <strong>não é de domínio público</strong>. Não é permitido copiar, revender, redistribuir, modificar, remover créditos de autoria ou hospedar a ferramenta em outro domínio, repositório, plataforma ou ambiente digital sem autorização prévia e expressa.</p>
+      <div class="legal-notice-source"><strong>Fonte dos dados brutos:</strong> INEP/MEC — Microdados públicos, provas, gabaritos e informações de itens do ENEM. <strong>Tratamento, organização pedagógica, interface, textos interpretativos, metodologia e base derivada:</strong> NAVE — Núcleo de Aprendizagem, Valor e Estratégia.</div>
+    </div>
+  </section>
+
   <div class="section-label">Filtros de Consulta</div>
   <div class="filter-panel">
     <div class="filter-grid">
@@ -530,7 +582,16 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
         <div class="footer-contact-pill">nave.nucleodeaprendizagem@gmail.com</div>
       </div>
     </div>
-    <div class="footer-bottom"><strong>NAVE | Painel Histórico de Inteligência Pedagógica ENEM</strong><br>Desenvolvido por NAVE - Núcleo de Aprendizagem, Valor e Estratégia · Copyright © 2026 — Todos os direitos reservados.</div>
+    <div class="footer-bottom">
+      <strong>NAVE | Painel Histórico de Inteligência Pedagógica ENEM</strong><br>
+      Desenvolvido por NAVE — Núcleo de Aprendizagem, Valor e Estratégia · Copyright © 2026 — Todos os direitos reservados.
+    </div>
+    <div class="footer-legal" aria-label="Aviso jurídico de uso e licença">
+      <p><strong>Fonte dos dados brutos:</strong> microdados públicos, provas, gabaritos e informações de itens do ENEM disponibilizados pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira — INEP/MEC.</p>
+      <p>A base apresentada neste painel foi tratada, organizada, cruzada, estruturada e interpretada pela NAVE para fins pedagógicos. O tratamento dos dados, a metodologia de organização, a interface, os textos explicativos, os indicadores pedagógicos, a identidade visual e o código da ferramenta constituem produção própria da NAVE.</p>
+      <p>A ferramenta é gratuita para consulta e uso pedagógico por professores, escolas e redes de ensino, mas não é de domínio público. A gratuidade de acesso não implica cessão de autoria, cessão de código, cessão de base tratada, autorização de revenda, redistribuição, modificação, remoção de autoria ou hospedagem em outros ambientes digitais.</p>
+      <p><strong>Termos de Uso e Licença:</strong> <a href="termos.html">termos.html</a></p>
+    </div>
   </div>
 </footer>
 
