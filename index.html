@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- VERSAO AJUSTADA 2016-2025 + AJUDA PEDAGOGICA CONSERVADORA: preserva distribuicao A-E e dificuldade original -->
+<!-- VERSAO AJUSTADA 2016-2025 + BENCHMARK ALTA PERFORMANCE + LEITURA PEDAGOGICA + ROTINA DE PENSAMENTO -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -414,6 +414,117 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
   .footer-legal{text-align:center;}
 }
 
+
+/* ── BENCHMARK DE ALTA PERFORMANCE + CALCULADORA SISU ── */
+.top20-panel,.sisu-panel{
+  background:linear-gradient(135deg,rgba(22,36,81,0.84),rgba(14,27,61,0.90));
+  border:1px solid rgba(74,159,255,0.20);
+  border-radius:22px;
+  padding:1.55rem;
+  margin-bottom:1.8rem;
+  box-shadow:0 16px 38px rgba(0,0,0,0.15);
+}
+.top20-head,.sisu-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:1.1rem;}
+.top20-title,.sisu-title{font-size:1.05rem;font-weight:800;line-height:1.25;color:var(--white);}
+.top20-sub,.sisu-sub{font-size:0.78rem;color:var(--text-muted);line-height:1.6;margin-top:0.35rem;max-width:780px;}
+.top20-badge,.sisu-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:rgba(0,201,255,0.10);border:1px solid rgba(0,201,255,0.32);color:var(--excelente);
+  font-size:0.58rem;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;white-space:nowrap;}
+.top20-controls,.sisu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.9rem;margin:1rem 0 1.15rem;}
+.top20-control,.sisu-field{background:rgba(14,27,61,0.55);border:1px solid rgba(74,159,255,0.12);border-radius:13px;padding:0.85rem;}
+.top20-control label,.sisu-field label{display:block;font-size:0.58rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.45rem;}
+.top20-control select,.sisu-field input,.sisu-field select{width:100%;background:rgba(14,27,61,0.9);border:1px solid rgba(74,159,255,0.28);
+  border-radius:10px;color:var(--white);font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:600;padding:10px 12px;}
+.sisu-field input{font-family:'JetBrains Mono',monospace;}
+.sisu-field select{appearance:none;cursor:pointer;}
+.sisu-field select:disabled{opacity:0.42;cursor:not-allowed;}
+.sisu-field select option{background:#1a2a5e;}
+.sisu-selected-option{margin-top:0.9rem;padding:0.9rem 1rem;border-radius:14px;background:rgba(0,201,255,0.08);border:1px solid rgba(0,201,255,0.22);font-size:0.76rem;line-height:1.6;color:var(--off-white);}
+.sisu-selected-option strong{color:var(--excelente);}
+.sisu-status-ok .sisu-main-value{color:var(--forte);}
+.sisu-status-warn .sisu-main-value{color:var(--intermediario);}
+.sisu-status-risk .sisu-main-value{color:var(--critico);}
+
+.top20-cards,.sisu-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0.85rem;margin-top:0.95rem;}
+.top20-card,.sisu-result-card{background:rgba(14,27,61,0.58);border:1px solid rgba(74,159,255,0.14);
+  border-radius:15px;padding:1rem;position:relative;overflow:hidden;}
+.top20-card::before,.sisu-result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple));}
+.top20-card-area{font-size:0.66rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-light);margin-bottom:0.65rem;}
+.top20-main-value,.sisu-main-value{font-family:'JetBrains Mono',monospace;font-size:1.45rem;font-weight:800;color:var(--white);line-height:1;}
+.top20-main-label,.sisu-main-label{font-size:0.62rem;color:var(--text-muted);margin-top:0.25rem;text-transform:uppercase;letter-spacing:0.08em;}
+.top20-mini{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.85rem;}
+.top20-mini div{background:rgba(255,255,255,0.04);border-radius:9px;padding:0.55rem;}
+.top20-mini strong{display:block;font-family:'JetBrains Mono',monospace;font-size:0.86rem;color:var(--off-white);}
+.top20-mini span{display:block;font-size:0.54rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+.top20-table-wrap,.sisu-impact{margin-top:1rem;background:rgba(14,27,61,0.45);border:1px solid rgba(74,159,255,0.12);border-radius:15px;overflow:hidden;}
+.top20-table,.sisu-impact-table{width:100%;border-collapse:collapse;font-size:0.73rem;}
+.top20-table th,.sisu-impact-table th{background:rgba(30,111,217,0.16);color:var(--blue-light);font-size:0.58rem;letter-spacing:0.10em;text-transform:uppercase;padding:0.65rem;text-align:left;}
+.top20-table td,.sisu-impact-table td{padding:0.65rem;border-top:1px solid rgba(74,159,255,0.10);color:var(--off-white);}
+.top20-note,.sisu-note{font-size:0.72rem;line-height:1.55;color:var(--text-muted);margin-top:0.85rem;}
+.top20-chart{display:flex;align-items:end;gap:0.65rem;height:150px;margin-top:1rem;padding:0.8rem;background:rgba(14,27,61,0.38);border:1px solid rgba(74,159,255,0.10);border-radius:15px;}
+.top20-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;gap:0.35rem;height:100%;}
+.top20-bar-fill{width:100%;max-width:46px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--blue-light),var(--purple));min-height:3px;}
+.top20-bar strong{font-size:0.62rem;color:var(--off-white);}
+.top20-bar span{font-size:0.56rem;color:var(--text-muted);font-weight:800;}
+
+.top20-pedagogy{margin-top:1rem;display:grid;grid-template-columns:1fr;gap:0.9rem;}
+.top20-reading,.top20-thinking{background:rgba(14,27,61,0.50);border:1px solid rgba(74,159,255,0.16);border-radius:16px;padding:1rem;}
+.top20-reading{border-left:4px solid var(--excelente);}
+.top20-thinking{border-left:4px solid var(--intermediario);}
+.top20-reading-title,.top20-thinking-title{font-size:0.68rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-light);margin-bottom:0.7rem;display:flex;align-items:center;gap:7px;}
+.top20-thinking-title{color:var(--intermediario);}
+.top20-reading p{font-size:0.78rem;line-height:1.62;color:var(--off-white);margin-bottom:0.65rem;}
+.top20-reading p:last-child{margin-bottom:0;}
+.top20-insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.6rem;margin-top:0.85rem;}
+.top20-insight{background:rgba(255,255,255,0.04);border:1px solid rgba(74,159,255,0.11);border-radius:12px;padding:0.75rem;}
+.top20-insight strong{display:block;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.3rem;}
+.top20-insight span{font-size:0.80rem;font-weight:800;color:var(--white);line-height:1.35;}
+.thinking-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0.75rem;}
+.thinking-block{background:rgba(255,255,255,0.04);border:1px solid rgba(74,159,255,0.10);border-radius:13px;padding:0.85rem;}
+.thinking-block strong{display:block;font-size:0.62rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--off-white);margin-bottom:0.45rem;}
+.thinking-block ul{margin-left:1rem;color:var(--text-muted);font-size:0.72rem;line-height:1.55;}
+.thinking-block li{margin-bottom:0.25rem;}
+
+.sisu-actions{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.9rem;}
+.sisu-clear{padding:9px 14px;background:rgba(14,27,61,0.78);border:1px solid rgba(74,159,255,0.28);border-radius:10px;color:var(--off-white);font-family:'Sora',sans-serif;font-weight:800;font-size:0.74rem;cursor:pointer;}
+.sisu-clear:hover{border-color:var(--blue-light);color:var(--white);}
+@media(max-width:720px){
+  .top20-head,.sisu-head{flex-direction:column;}
+  .top20-table-wrap,.sisu-impact{overflow-x:auto;}
+  .top20-chart{gap:0.35rem;}
+}
+
+
+/* ── BENCHMARK ALTA PERFORMANCE 2025 + HISTÓRICO ── */
+.benchmark-controls{grid-template-columns:minmax(260px,420px);}
+.benchmark-panel .top20-cards{grid-template-columns:repeat(5,minmax(150px,1fr));}
+.benchmark-card .top20-main-value{font-size:1.32rem;}
+.historical-card::before{background:linear-gradient(90deg,var(--intermediario),var(--purple));}
+.benchmark-year-table th,.benchmark-year-table td{text-align:left;}
+@media(max-width:980px){.benchmark-panel .top20-cards{grid-template-columns:repeat(2,minmax(160px,1fr));}}
+@media(max-width:560px){.benchmark-panel .top20-cards{grid-template-columns:1fr;}.benchmark-controls{grid-template-columns:1fr;}}
+
+
+/* ── NAVEGAÇÃO POR MÓDULOS ── */
+html{scroll-behavior:smooth;}
+.module-entry-panel{background:linear-gradient(135deg,rgba(22,36,81,0.86),rgba(14,27,61,0.92));border:1px solid rgba(74,159,255,0.22);border-radius:22px;padding:1.55rem;margin-bottom:1.8rem;box-shadow:0 16px 38px rgba(0,0,0,0.15);}
+.module-entry-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:1.1rem;}
+.module-entry-title{font-size:1.08rem;font-weight:800;color:var(--white);line-height:1.25;}
+.module-entry-sub{font-size:0.78rem;color:var(--text-muted);line-height:1.6;margin-top:0.35rem;max-width:820px;}
+.module-entry-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:rgba(0,201,255,0.10);border:1px solid rgba(0,201,255,0.32);color:var(--excelente);font-size:0.58rem;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;white-space:nowrap;}
+.module-entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.95rem;}
+.module-entry-card{background:rgba(14,27,61,0.58);border:1px solid rgba(74,159,255,0.16);border-radius:16px;padding:1.1rem;cursor:pointer;text-align:left;color:var(--white);font-family:'Sora',sans-serif;transition:transform 0.15s,border-color 0.15s,background 0.15s,box-shadow 0.15s;position:relative;overflow:hidden;}
+.module-entry-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--purple));}
+.module-entry-card:hover{transform:translateY(-2px);border-color:rgba(74,159,255,0.42);background:rgba(30,111,217,0.12);box-shadow:0 12px 28px rgba(0,0,0,0.16);}
+.module-entry-card .entry-icon{font-size:1.45rem;margin-bottom:0.75rem;}
+.module-entry-card strong{display:block;font-size:0.9rem;font-weight:800;margin-bottom:0.45rem;color:var(--white);}
+.module-entry-card span{display:block;font-size:0.72rem;line-height:1.55;color:var(--text-muted);}
+.module-section{scroll-margin-top:92px;}
+.module-back-row{display:flex;justify-content:flex-end;margin:0 0 0.75rem 0;}
+.btn-voltar-modulos{padding:8px 14px;background:rgba(14,27,61,0.78);border:1px solid rgba(74,159,255,0.30);border-radius:999px;color:var(--off-white);font-family:'Sora',sans-serif;font-weight:800;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.15s;}
+.btn-voltar-modulos:hover{border-color:var(--blue-light);color:var(--white);transform:translateY(-1px);}
+@media(max-width:820px){.module-entry-grid{grid-template-columns:1fr;}.module-entry-head{flex-direction:column;}.module-back-row{justify-content:flex-start;}}
+
 @media print{
   body{background:#fff;color:#111;}
   header,.filter-panel,#placeholder,.intro-hero,footer,.cross-card,.quick-actions{display:none !important;}
@@ -446,7 +557,7 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
   <section class="intro-hero">
     <div>
       <div class="intro-kicker">Inteligência pedagógica com dados reais</div>
-      <div class="intro-title">Painel Histórico de Inteligência Pedagógica ENEM</div>
+      <div class="intro-title">Painel NAVE ENEM — Inteligência Pedagógica e Estratégia SiSU</div>
       <div class="intro-text">
         Ferramenta NAVE para qualificar aulas, analisar padrões de resposta, identificar distratores fortes e transformar dados históricos do ENEM por ano, área, caderno, questão e habilidade em decisões didáticas mais precisas.
       </div>
@@ -472,17 +583,38 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
       </div>
     </aside>
   </section>
-  <section class="legal-notice-card" aria-label="Aviso de autoria, titularidade e fonte dos dados">
-    <div class="legal-notice-title">🔐 Autoria, titularidade e fonte dos dados</div>
-    <div class="legal-notice-body">
-      <p>Este painel utiliza como fonte primária os <strong>microdados públicos, provas, gabaritos e informações de itens do ENEM disponibilizados pelo INEP/MEC</strong>.</p>
-      <p>A NAVE não reivindica autoria sobre os dados públicos oficiais do ENEM. A autoria e a titularidade da NAVE referem-se ao <strong>tratamento, organização, cruzamento, estruturação pedagógica, interface, textos interpretativos, metodologia de análise, identidade visual, código e base derivada</strong> apresentada nesta ferramenta.</p>
-      <p>O acesso ao painel é gratuito para consulta educacional, mas a ferramenta <strong>não é de domínio público</strong>. Não é permitido copiar, revender, redistribuir, modificar, remover créditos de autoria ou hospedar a ferramenta em outro domínio, repositório, plataforma ou ambiente digital sem autorização prévia e expressa.</p>
-      <div class="legal-notice-source"><strong>Fonte dos dados brutos:</strong> INEP/MEC — Microdados públicos, provas, gabaritos e informações de itens do ENEM. <strong>Tratamento, organização pedagógica, interface, textos interpretativos, metodologia e base derivada:</strong> NAVE — Núcleo de Aprendizagem, Valor e Estratégia.</div>
+
+  <section class="module-entry-panel" id="menu-modulos" aria-label="Entradas principais do painel">
+    <div class="module-entry-head">
+      <div>
+        <div class="module-entry-title">O que deseja fazer?</div>
+        <div class="module-entry-sub">Escolha uma entrada para navegar pelo painel. As três áreas trabalham juntas: análise pedagógica dos itens, simulação estratégica SiSU e leitura da alta performance no ENEM.</div>
+      </div>
+      <div class="module-entry-badge">Navegação por módulos</div>
+    </div>
+    <div class="module-entry-grid">
+      <button type="button" class="module-entry-card" onclick="irParaModulo('secao-itens-enem')">
+        <div class="entry-icon">🔎</div>
+        <strong>Analisar Itens do ENEM</strong>
+        <span>Consultar itens, habilidades, distratores, TRI e leitura pedagógica por ano, área, caderno e questão.</span>
+      </button>
+      <button type="button" class="module-entry-card" onclick="irParaModulo('secao-calculadora-sisu')">
+        <div class="entry-icon">🧭</div>
+        <strong>Simular Nota SiSU</strong>
+        <span>Calcular a média ponderada com pesos reais por UF, universidade, campus, curso e modalidade.</span>
+      </button>
+      <button type="button" class="module-entry-card" onclick="irParaModulo('secao-benchmark-alta-performance')">
+        <div class="entry-icon">🚀</div>
+        <strong>Explorar Alta Performance ENEM</strong>
+        <span>Visualizar Top 10%, Top 5%, Top 1%, Top 100, máximas observadas e médias históricas.</span>
+      </button>
     </div>
   </section>
 
-  <div class="section-label">Filtros de Consulta</div>
+
+  <section class="module-section" id="secao-itens-enem">
+    <div class="module-back-row"><button type="button" class="btn-voltar-modulos" onclick="voltarAoMenuModulos()">← Voltar às entradas</button></div>
+  <div class="section-label">Analisar Itens do ENEM</div>
   <div class="filter-panel">
     <div class="filter-grid">
       <div class="filter-group">
@@ -560,6 +692,102 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
     <p>Selecione ano, área, caderno e consulte por questão ou habilidade para visualizar<br>padrões de resposta, distratores, TRI e leitura pedagógica do item.</p>
   </div>
   <div id="result"></div>
+  </section>
+
+  <div class="section-label">Simular Nota SiSU</div>
+
+  <section class="sisu-panel module-section" id="secao-calculadora-sisu">
+    <div class="module-back-row"><button type="button" class="btn-voltar-modulos" onclick="voltarAoMenuModulos()">← Voltar às entradas</button></div>
+    <div class="sisu-head">
+      <div>
+        <div class="sisu-title">Simulador de Nota SiSU</div>
+        <div class="sisu-sub">
+          Escolha UF, universidade, campus, curso e modalidade. O painel carrega automaticamente os pesos do SiSU 2026, calcula a média ponderada a partir das notas TRI informadas e compara o resultado com a nota de corte disponível na base.
+        </div>
+      </div>
+      <div class="sisu-badge">Pesos automáticos</div>
+    </div>
+
+    <div class="sisu-grid">
+      <div class="sisu-field">
+        <label>UF</label>
+        <select id="sisu-uf"><option value="">Carregando...</option></select>
+      </div>
+      <div class="sisu-field">
+        <label>Universidade</label>
+        <select id="sisu-ies" disabled><option value="">Selecione a UF...</option></select>
+      </div>
+      <div class="sisu-field">
+        <label>Campus / município</label>
+        <select id="sisu-campus" disabled><option value="">Selecione a universidade...</option></select>
+      </div>
+      <div class="sisu-field">
+        <label>Curso</label>
+        <select id="sisu-curso" disabled><option value="">Selecione o campus...</option></select>
+      </div>
+      <div class="sisu-field">
+        <label>Modalidade</label>
+        <select id="sisu-modalidade" disabled><option value="">Selecione o curso...</option></select>
+      </div>
+    </div>
+
+    <div id="sisu-selected-option" class="sisu-selected-option">
+      Selecione uma opção SiSU para carregar pesos, nota de corte e diagnóstico.
+    </div>
+
+    <div class="sisu-grid">
+      <div class="sisu-field"><label>Nota CN</label><input id="calc-nota-cn" type="number" min="0" max="1000" step="0.1" placeholder="Ex.: 650"></div>
+      <div class="sisu-field"><label>Nota CH</label><input id="calc-nota-ch" type="number" min="0" max="1000" step="0.1" placeholder="Ex.: 680"></div>
+      <div class="sisu-field"><label>Nota LC</label><input id="calc-nota-lc" type="number" min="0" max="1000" step="0.1" placeholder="Ex.: 620"></div>
+      <div class="sisu-field"><label>Nota MT</label><input id="calc-nota-mt" type="number" min="0" max="1000" step="0.1" placeholder="Ex.: 720"></div>
+      <div class="sisu-field"><label>Nota Redação</label><input id="calc-nota-red" type="number" min="0" max="1000" step="0.1" placeholder="Ex.: 880"></div>
+    </div>
+
+    <div class="sisu-actions">
+      <button type="button" class="sisu-clear" id="calc-exemplo">Preencher exemplo</button>
+      <button type="button" class="sisu-clear" id="calc-limpar">Limpar notas</button>
+    </div>
+
+    <div id="sisu-results" class="sisu-results"></div>
+    <div id="sisu-impact" class="sisu-impact"></div>
+    <div id="sisu-note" class="sisu-note"></div>
+  </section>
+
+
+  <div class="section-label">Explorar Alta Performance ENEM</div>
+
+  <section class="top20-panel benchmark-panel module-section" id="secao-benchmark-alta-performance">
+    <div class="module-back-row"><button type="button" class="btn-voltar-modulos" onclick="voltarAoMenuModulos()">← Voltar às entradas</button></div>
+    <div class="top20-head">
+      <div>
+        <div class="top20-title">Explorar Alta Performance ENEM</div>
+        <div class="top20-sub">
+          Leitura histórica da alta performance no ENEM, sem associação a curso, instituição ou carreira específica.
+          Compare a régua de desempenho por área ou pela média objetiva, observando Top 10%, Top 5%, Top 1%, Top 100 e máximas observadas.
+        </div>
+      </div>
+      <div class="top20-badge">Base 2016–2025</div>
+    </div>
+
+    <div class="top20-controls benchmark-controls">
+      <div class="top20-control">
+        <label for="benchmark-recorte">Recorte de alta performance</label>
+        <select id="benchmark-recorte">
+          <option value="top10">Top 10% · zona inicial de alta performance</option>
+          <option value="top5">Top 5% · alta performance consistente</option>
+          <option value="top1">Top 1% · elite nacional de desempenho</option>
+          <option value="top100">Top 100 · teto comparativo de excelência</option>
+          <option value="maximas">Máximas · maiores notas observadas</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="benchmark-cards" class="top20-cards"></div>
+    <div id="benchmark-chart" class="top20-chart"></div>
+    <div id="benchmark-table" class="top20-table-wrap"></div>
+    <div id="benchmark-note" class="top20-note"></div>
+    <div id="benchmark-pedagogy" class="top20-pedagogy"></div>
+  </section>
 </main>
 
 <footer>
@@ -596,6 +824,7 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
   </div>
 </footer>
 
+<!-- Bases históricas dos itens: estrutura unificada dentro de 04_html/escolas/YYYY/ -->
 <script src="./2016/base_enem_2016.js"></script>
 <script src="./2017/base_enem_2017.js"></script>
 <script src="./2018/base_enem_2018.js"></script>
@@ -606,6 +835,14 @@ footer{padding:0;border-top:none;background:rgba(240,244,255,0.96);color:#102033
 <script src="./2023/base_enem_2023.js"></script>
 <script src="./2024/base_enem_2024.js"></script>
 <script src="./2025/base_enem_2025.js"></script>
+<!-- Bases dos módulos de Alta Performance e SiSU: ficam dentro de 04_html/escolas/2025/ -->
+<script src="./2025/base_benchmark_area_2016_2025.js"></script>
+<script src="./2025/base_benchmark_objetiva_2016_2025.js"></script>
+<script src="./2025/base_benchmark_historico_area_2016_2025.js"></script>
+<script src="./2025/base_benchmark_historico_objetiva_2016_2025.js"></script>
+<script src="./2025/base_ranking_top100_objetiva_2025.js"></script>
+<script src="./2025/base_metadados_benchmark_alta_performance.js"></script>
+<script src="./2025/base_sisu_2026_simulador_minima.js"></script>
 <script>
 
 function normalizarClasse(texto){
@@ -711,6 +948,27 @@ function textoOuPadrao(valor, padrao='Sem informação na base JS'){
   return String(valor);
 }
 
+
+
+function normalizarAreaPainel(valor){
+  if(valor === undefined || valor === null) return '';
+  const raw = String(valor).trim();
+  if(!raw) return '';
+  const txt = raw
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g,' ')
+    .trim();
+
+  if(['CN','CH','LC','MT'].includes(txt)) return txt;
+  if(txt.includes('NATUREZA') || txt.includes('CIENCIAS DA NATUREZA') || txt === 'C N') return 'CN';
+  if(txt.includes('HUMANAS') || txt.includes('CIENCIAS HUMANAS') || txt === 'C H') return 'CH';
+  if(txt.includes('LINGUAGENS') || txt.includes('CODIGOS') || txt.includes('LINGUA PORTUGUESA') || txt === 'L C') return 'LC';
+  if(txt.includes('MATEMATICA') || txt === 'M T') return 'MT';
+  return '';
+}
+
 function montarDB(base){
   const db = { questoes: {} };
 
@@ -720,7 +978,7 @@ function montarDB(base){
   }
 
   base.forEach(item => {
-    const area = primeiroValor(item, ['sg_area','area'], '');
+    const area = normalizarAreaPainel(primeiroValor(item, ['sg_area','area'], ''));
     if(!area) return;
 
     const estudantes = Number(primeiroValor(item, ['total_respostas','n_respondentes','n_validos'], 0)) || 0;
@@ -807,16 +1065,16 @@ function montarDB(base){
 
 
 const BASES_ENEM = {
-  2016: (typeof BASE_ENEM_2016 !== 'undefined' ? BASE_ENEM_2016 : []),
-  2017: (typeof BASE_ENEM_2017 !== 'undefined' ? BASE_ENEM_2017 : []),
-  2018: (typeof BASE_ENEM_2018 !== 'undefined' ? BASE_ENEM_2018 : []),
-  2019: (typeof BASE_ENEM_2019 !== 'undefined' ? BASE_ENEM_2019 : []),
-  2020: (typeof BASE_ENEM_2020 !== 'undefined' ? BASE_ENEM_2020 : []),
-  2021: (typeof BASE_ENEM_2021 !== 'undefined' ? BASE_ENEM_2021 : []),
-  2022: (typeof BASE_ENEM_2022 !== 'undefined' ? BASE_ENEM_2022 : []),
-  2023: (typeof BASE_ENEM_2023 !== 'undefined' ? BASE_ENEM_2023 : []),
-  2024: (typeof BASE_ENEM_2024 !== 'undefined' ? BASE_ENEM_2024 : []),
-  2025: (typeof BASE_ENEM_2025 !== 'undefined' ? BASE_ENEM_2025 : [])
+  2016: (typeof BASE_ENEM_2016 !== 'undefined' ? BASE_ENEM_2016 : (window.BASE_ENEM_2016 || [])),
+  2017: (typeof BASE_ENEM_2017 !== 'undefined' ? BASE_ENEM_2017 : (window.BASE_ENEM_2017 || [])),
+  2018: (typeof BASE_ENEM_2018 !== 'undefined' ? BASE_ENEM_2018 : (window.BASE_ENEM_2018 || [])),
+  2019: (typeof BASE_ENEM_2019 !== 'undefined' ? BASE_ENEM_2019 : (window.BASE_ENEM_2019 || [])),
+  2020: (typeof BASE_ENEM_2020 !== 'undefined' ? BASE_ENEM_2020 : (window.BASE_ENEM_2020 || [])),
+  2021: (typeof BASE_ENEM_2021 !== 'undefined' ? BASE_ENEM_2021 : (window.BASE_ENEM_2021 || [])),
+  2022: (typeof BASE_ENEM_2022 !== 'undefined' ? BASE_ENEM_2022 : (window.BASE_ENEM_2022 || [])),
+  2023: (typeof BASE_ENEM_2023 !== 'undefined' ? BASE_ENEM_2023 : (window.BASE_ENEM_2023 || [])),
+  2024: (typeof BASE_ENEM_2024 !== 'undefined' ? BASE_ENEM_2024 : (window.BASE_ENEM_2024 || [])),
+  2025: (typeof BASE_ENEM_2025 !== 'undefined' ? BASE_ENEM_2025 : (window.BASE_ENEM_2025 || []))
 };
 
 const DBS = {};
@@ -1682,11 +1940,649 @@ function buscar(){
 document.addEventListener('DOMContentLoaded', () => {
   const anoSel = document.getElementById('sel-ano');
   if(anoSel){
-    ANO_ATUAL = anoSel.value || '2024';
+    ANO_ATUAL = anoSel.value || '2025';
+  }
+  if(!DBS[String(ANO_ATUAL)] || Object.keys(DBS[String(ANO_ATUAL)].questoes || {}).length === 0){
+    console.warn('Base ENEM não encontrada ou sem questões para o ano selecionado:', ANO_ATUAL, BASES_ENEM[String(ANO_ATUAL)]?.length || 0);
   }
   onAreaChange();
 });
 
 </script>
+
+<script>
+(function(){
+  function n(v){
+    if(v === undefined || v === null || v === '') return null;
+    if(typeof v === 'number') return Number.isFinite(v) ? v : null;
+    let s = String(v).replace('%','').trim();
+    if(s.includes(',') && s.includes('.')) s = s.replace(/\./g,'').replace(',','.');
+    else if(s.includes(',')) s = s.replace(',','.');
+    const x = Number(s);
+    return Number.isFinite(x) ? x : null;
+  }
+  function fmtNum(v, casas=1){
+    const x = n(v);
+    if(x === null) return 'N/D';
+    return x.toLocaleString('pt-BR',{minimumFractionDigits:casas,maximumFractionDigits:casas});
+  }
+  function fmtInt(v){
+    const x = n(v);
+    if(x === null) return 'N/D';
+    return Math.round(x).toLocaleString('pt-BR');
+  }
+  function fmtPct(v, casas=1){
+    const x = n(v);
+    if(x === null) return 'N/D';
+    return x.toLocaleString('pt-BR',{minimumFractionDigits:casas,maximumFractionDigits:casas}) + '%';
+  }
+  function areaNome(a){
+    return ({CN:'Ciências da Natureza',CH:'Ciências Humanas',LC:'Linguagens',MT:'Matemática',OBJ:'Média objetiva',OBJETIVA:'Média objetiva'})[String(a||'').toUpperCase()] || a || 'Geral';
+  }
+  function areaOrdem(a){
+    return ({CN:1,CH:2,LC:3,MT:4,OBJ:5,OBJETIVA:5,GERAL:6})[String(a||'').toUpperCase()] || 99;
+  }
+  function arr(names){
+    for(const name of names){
+      if(Array.isArray(window[name])) return window[name];
+    }
+    return [];
+  }
+  function normTxt(v){
+    return String(v ?? '')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .toLowerCase().replace(/[^a-z0-9]+/g,'')
+      .trim();
+  }
+  function pick(obj, keys){
+    if(!obj) return null;
+    for(const k of keys){
+      if(Object.prototype.hasOwnProperty.call(obj,k) && obj[k] !== null && obj[k] !== undefined && obj[k] !== '') return obj[k];
+    }
+    return null;
+  }
+  function firstNumeric(obj, keys){
+    for(const k of keys){
+      const v = pick(obj,[k]);
+      if(n(v) !== null) return v;
+    }
+    return null;
+  }
+
+  const RECORTES = {
+    top10:{label:'Top 10%', conceito:'zona inicial de alta performance', aliases:['top10','top10percent','top10porcento','p90','decil10','top_10']},
+    top5:{label:'Top 5%', conceito:'alta performance consistente', aliases:['top5','top5percent','top5porcento','p95','top_5']},
+    top1:{label:'Top 1%', conceito:'elite nacional de desempenho', aliases:['top1','top1percent','top1porcento','p99','top_1']},
+    top100:{label:'Top 100', conceito:'teto comparativo de excelência', aliases:['top100','top100objetiva','top_100','cemmelhores','100melhores']},
+    maximas:{label:'Máximas', conceito:'maiores notas observadas', aliases:['maximas','maxima','max','maioresnotas','maiornota','teto','maiores']}
+  };
+  const AREAS_BENCHMARK = ['CH','CN','LC','MT'];
+
+  function recorteLinha(row){
+    const raw = pick(row,['criterio_top','recorte','tipo_recorte','faixa','grupo','benchmark','top','percentil','categoria','segmento','tipo']);
+    const v = normTxt(raw);
+    if(v.includes('top100') || v.includes('100melhores') || v.includes('cemmelhores')) return 'top100';
+    if(v.includes('maxim') || v === 'max' || v.includes('maiornota')) return 'maximas';
+    if(v.includes('top10') || v.includes('p90') || v.includes('decil10')) return 'top10';
+    if(v.includes('top5') || v.includes('p95')) return 'top5';
+    if(v.includes('top1') || v.includes('p99')) return 'top1';
+    if(v === '10') return 'top10';
+    if(v === '5') return 'top5';
+    if(v === '1') return 'top1';
+    return v;
+  }
+  function anoLinha(row){
+    const a = pick(row,['ano','year','nu_ano']);
+    const v = Number(a);
+    return Number.isFinite(v) ? v : null;
+  }
+  function areaLinha(row){
+    const a = pick(row,['area','sg_area','cod_area','area_codigo','disciplina','componente','nome_area']);
+    const v = normTxt(a);
+    if(v.includes('cienciasdanatureza') || v === 'cn') return 'CN';
+    if(v.includes('cienciashumanas') || v === 'ch') return 'CH';
+    if(v.includes('linguagens') || v === 'lc') return 'LC';
+    if(v.includes('matematica') || v === 'mt') return 'MT';
+    if(v.includes('objetiva') || v.includes('mediaobjetiva') || v === 'obj') return 'OBJ';
+    return a ? String(a).toUpperCase() : 'OBJ';
+  }
+  function valorAreaBenchmark(row, recorte){
+    if(recorte === 'maximas'){
+      return firstNumeric(row,['nota_maxima','maxima','maximo','maior_nota','valor_maximo','resultado']);
+    }
+    return firstNumeric(row,['nota_media','media_nota','media_tri','media','resultado','valor','nota']);
+  }
+  function valorObjetivaBenchmark(row, recorte){
+    if(recorte === 'maximas'){
+      return firstNumeric(row,['media_objetiva_maxima','nota_objetiva_maxima','maxima_objetiva','nota_maxima_objetiva','media_objetiva_media','nota_objetiva_media']);
+    }
+    return firstNumeric(row,['media_objetiva_media','nota_objetiva_media','media_geral_objetiva','media_objetiva','resultado','valor']);
+  }
+  function acertosAreaBenchmark(row, recorte){
+    if(recorte === 'maximas'){
+      return firstNumeric(row,['acertos_maximo','acertos_maximos','maior_acertos','max_acertos','acertos_media']);
+    }
+    return firstNumeric(row,['acertos_media','media_acertos','acertos_medios','acertos','resultado_acertos']);
+  }
+  function acertosObjetivaBenchmark(row, recorte){
+    if(recorte === 'maximas'){
+      return firstNumeric(row,['acertos_objetiva_maximo','acertos_objetiva_maximos','acertos_objetiva_total_maximo','maior_acertos_objetiva','acertos_objetiva_media']);
+    }
+    return firstNumeric(row,['acertos_objetiva_media','media_acertos_objetiva','acertos_objetiva_medios','acertos_objetiva','acertos_media']);
+  }
+  function valorLinha(row){
+    return firstNumeric(row,[
+      'resultado_2025','valor_2025','media_2025','nota_2025','media_tri_2025','media_nota_2025','media_objetiva_2025',
+      'media_objetiva_media','nota_objetiva_media','resultado','valor','nota','media','media_tri','media_nota','media_objetiva','corte','corte_tri','corte_media_objetiva',
+      'media_top','media_recorte','nota_media','proficiência','proficiencia','pontuacao','pontuação',
+      'maxima','maximo','maior_nota','nota_maxima'
+    ]);
+  }
+  function mediana(vals){
+    const a = vals.map(n).filter(v=>v !== null).sort((x,y)=>x-y);
+    if(!a.length) return null;
+    const m = Math.floor(a.length/2);
+    return a.length % 2 ? a[m] : (a[m-1]+a[m])/2;
+  }
+  function media(vals){
+    const a = vals.map(n).filter(v=>v !== null);
+    return a.length ? a.reduce((s,v)=>s+v,0)/a.length : null;
+  }
+  function getBenchmarkBase(tipo){
+    return tipo === 'area'
+      ? arr(['BASE_BENCHMARK_AREA_2016_2025','base_benchmark_area_2016_2025'])
+      : arr(['BASE_BENCHMARK_OBJETIVA_2016_2025','base_benchmark_objetiva_2016_2025']);
+  }
+  function rowsRecorte(tipo, recorte){
+    return getBenchmarkBase(tipo).map(r=>{
+      const valor = tipo === 'area' ? valorAreaBenchmark(r, recorte) : valorObjetivaBenchmark(r, recorte);
+      const acertos = tipo === 'area' ? acertosAreaBenchmark(r, recorte) : acertosObjetivaBenchmark(r, recorte);
+      return Object.assign({}, r, {__valorBenchmark:n(valor), __acertosBenchmark:n(acertos)});
+    }).filter(r=>{
+      const rec = recorteLinha(r);
+      const ano = anoLinha(r);
+      return rec === recorte && ano !== null && ano >= 2016 && ano <= 2025 && n(r.__valorBenchmark) !== null;
+    });
+  }
+  function consolidarPorAnoArea(rows){
+    const mapa = new Map();
+    rows.forEach(r=>{
+      const ano = anoLinha(r);
+      const area = areaLinha(r);
+      const val = n(r.__valorBenchmark !== undefined ? r.__valorBenchmark : valorLinha(r));
+      const acertos = n(r.__acertosBenchmark);
+      if(ano === null || val === null) return;
+      const k = `${ano}|${area}`;
+      if(!mapa.has(k)) mapa.set(k, {valores:[], acertos:[]});
+      mapa.get(k).valores.push(val);
+      if(acertos !== null) mapa.get(k).acertos.push(acertos);
+    });
+    const out = [];
+    mapa.forEach((obj,k)=>{
+      const [ano,area] = k.split('|');
+      out.push({ano:Number(ano), area, valor:media(obj.valores), acertos:media(obj.acertos)});
+    });
+    return out;
+  }
+  function resumoSerie(codigo, nome, valoresPorAno, origem, acertosPorAno){
+    acertosPorAno = acertosPorAno || {};
+    const anos = Object.keys(valoresPorAno).map(Number).sort((a,b)=>a-b);
+    const pares = anos.map(ano=>({ano, valor:n(valoresPorAno[ano])})).filter(x=>x.valor !== null);
+    const vals = pares.map(x=>x.valor);
+    const v2025 = n(valoresPorAno[2025]);
+    const mHist = media(vals);
+    const medHist = mediana(vals);
+    const melhor = pares.length ? pares.reduce((b,x)=>x.valor > b.valor ? x : b, pares[0]) : null;
+    const pior = pares.length ? pares.reduce((b,x)=>x.valor < b.valor ? x : b, pares[0]) : null;
+    const anosAc = Object.keys(acertosPorAno).map(Number).sort((a,b)=>a-b);
+    const acPares = anosAc.map(ano=>({ano, valor:n(acertosPorAno[ano])})).filter(x=>x.valor !== null);
+    const acVals = acPares.map(x=>x.valor);
+    const ac2025 = n(acertosPorAno[2025]);
+    const acMediaHist = media(acVals);
+    const acMedianaHist = mediana(acVals);
+    return {codigo,nome,origem, valoresPorAno, acertosPorAno, valor2025:v2025, mediaHist:mHist, medianaHist:medHist, melhor, pior, diff:v2025!==null && mHist!==null ? v2025-mHist : null, acertos2025:ac2025, acertosMediaHist:acMediaHist, acertosMedianaHist:acMedianaHist};
+  }
+  function resumoAreas(recorte){
+    const rows = consolidarPorAnoArea(rowsRecorte('area', recorte));
+    return AREAS_BENCHMARK.map(area=>{
+      const vals = {};
+      const acertos = {};
+      rows.filter(r=>r.area === area).forEach(r=>{ vals[r.ano] = r.valor; if(n(r.acertos)!==null) acertos[r.ano] = r.acertos; });
+      return resumoSerie(area, `${area} · ${areaNome(area)}`, vals, 'Por área', acertos);
+    });
+  }
+  function resumoObjetiva(recorte){
+    const vals = {};
+    const acertos = {};
+    const rows = rowsRecorte('objetiva', recorte);
+    for(let ano=2016; ano<=2025; ano++){
+      const anoRows = rows.filter(r=>anoLinha(r) === ano);
+      if(anoRows.length){
+        // A média objetiva e os acertos objetivos vêm repetidos nas quatro linhas de área da base objetiva; por isso basta consolidar os valores iguais.
+        vals[ano] = media(anoRows.map(r=>r.__valorBenchmark));
+        const ac = media(anoRows.map(r=>r.__acertosBenchmark));
+        if(n(ac)!==null) acertos[ano] = ac;
+      }
+    }
+    // Fallback específico para Top 100 objetiva 2025, usando a média dos 100 estudantes do ranking.
+    if(recorte === 'top100' && n(vals[2025]) === null){
+      const ranking = arr(['BASE_RANKING_TOP100_OBJETIVA_2025','base_ranking_top100_objetiva_2025']);
+      const possiveis = ranking.map(r=>firstNumeric(r,['nota_objetiva_media','media_objetiva','media_geral_objetiva','nota_media_objetiva','media','resultado'])).filter(v=>n(v)!==null);
+      const acPossiveis = ranking.map(r=>firstNumeric(r,['acertos_objetiva_total','acertos_objetiva','total_acertos_objetiva','acertos_total','acertos'])).filter(v=>n(v)!==null);
+      if(possiveis.length) vals[2025] = media(possiveis);
+      if(acPossiveis.length) acertos[2025] = media(acPossiveis);
+    }
+    return resumoSerie('OBJ', 'Média objetiva', vals, 'Pela média objetiva', acertos);
+  }
+  function serieCompleta(recorte){
+    return [...resumoAreas(recorte), resumoObjetiva(recorte)];
+  }
+  function fmtDiff(v){
+    const x = n(v);
+    return x === null ? 'N/D' : `${x >= 0 ? '+' : ''}${fmtNum(x,1)}`;
+  }
+  function fmtAcertos(v){
+    const x = n(v);
+    return x === null ? 'N/D' : fmtNum(x,1);
+  }
+  function cellNotaAcertos(nota, acertos){
+    const notaTxt = fmtNum(nota,1);
+    const acTxt = fmtAcertos(acertos);
+    return acTxt === 'N/D' ? notaTxt : `${notaTxt}<br><span style="font-size:0.62rem;color:var(--text-muted);">${acTxt} acertos</span>`;
+  }
+  function cardBenchmark(item, tipo, cfg){
+    const rotuloAcertos = cfg && cfg.label === 'Máximas' ? 'acertos máx.' : 'média acertos';
+    if(tipo === '2025'){
+      return `<div class="top20-card benchmark-card">
+        <div class="top20-card-area">${item.nome}</div>
+        <div class="top20-main-value">${fmtNum(item.valor2025,1)}</div>
+        <div class="top20-main-label">média 2025 · ${cfg.label} · ${item.origem}</div>
+        <div class="top20-mini">
+          <div><strong>${fmtAcertos(item.acertos2025)}</strong><span>${rotuloAcertos} 2025</span></div>
+          <div><strong>${fmtAcertos(item.acertosMediaHist)}</strong><span>média hist. acertos</span></div>
+          <div><strong>${fmtNum(item.mediaHist,1)}</strong><span>média histórica</span></div>
+          <div><strong>${fmtDiff(item.diff)}</strong><span>2025 × histórico</span></div>
+        </div>
+      </div>`;
+    }
+    return `<div class="top20-card benchmark-card historical-card">
+      <div class="top20-card-area">${item.nome}</div>
+      <div class="top20-main-value">${fmtNum(item.mediaHist,1)}</div>
+      <div class="top20-main-label">média histórica 2016–2025 · ${cfg.label} · ${item.origem}</div>
+      <div class="top20-mini">
+        <div><strong>${fmtAcertos(item.acertosMediaHist)}</strong><span>média hist. acertos</span></div>
+        <div><strong>${fmtAcertos(item.acertosMedianaHist)}</strong><span>mediana hist. acertos</span></div>
+        <div><strong>${fmtNum(item.medianaHist,1)}</strong><span>mediana histórica</span></div>
+        <div><strong>${item.melhor ? item.melhor.ano + ' · ' + fmtNum(item.melhor.valor,1) : 'N/D'}</strong><span>melhor ano</span></div>
+        <div><strong>${item.pior ? item.pior.ano + ' · ' + fmtNum(item.pior.valor,1) : 'N/D'}</strong><span>pior ano</span></div>
+        <div><strong>${fmtDiff(item.diff)}</strong><span>2025 × histórico</span></div>
+      </div>
+    </div>`;
+  }
+  function renderPedagogiaBenchmark(recorte, serie){
+    const box = document.getElementById('benchmark-pedagogy');
+    if(!box) return;
+    const cfg = RECORTES[recorte] || {label:recorte, conceito:''};
+    const valid2025 = serie.filter(s=>n(s.valor2025)!==null);
+    const maior = valid2025.length ? valid2025.reduce((b,s)=>s.valor2025 > b.valor2025 ? s : b, valid2025[0]) : null;
+    const menor = valid2025.length ? valid2025.reduce((b,s)=>s.valor2025 < b.valor2025 ? s : b, valid2025[0]) : null;
+    const deltas = serie.filter(s=>n(s.diff)!==null);
+    const maiorDelta = deltas.length ? deltas.reduce((b,s)=>Math.abs(s.diff) > Math.abs(b.diff) ? s : b, deltas[0]) : null;
+    const leituraRecorte = recorte === 'top100'
+      ? 'O Top 100 funciona como teto comparativo de excelência: não descreve o estudante forte típico, mas a régua superior observada no conjunto analisado.'
+      : `${cfg.label} representa ${cfg.conceito}. Quanto mais restritivo o recorte, menos ele descreve desempenho amplo e mais se aproxima de uma régua de excelência.`;
+
+    box.innerHTML = `
+      <div class="top20-reading">
+        <div class="top20-reading-title">▣ Leitura pedagógica dos dados</div>
+        <p>O bloco consolida, em uma mesma tela, as quatro áreas do ENEM e a média objetiva. Assim, a comparação evita duas distorções: olhar apenas para uma área isolada ou usar somente a média geral sem enxergar onde a performance se sustenta.</p>
+        <p>${leituraRecorte}</p>
+        <p>Em 2025, o maior resultado aparece em <strong>${maior ? maior.nome : 'N/D'}</strong>, enquanto o menor aparece em <strong>${menor ? menor.nome : 'N/D'}</strong>. A maior distância de 2025 em relação à média histórica aparece em <strong>${maiorDelta ? maiorDelta.nome : 'N/D'}</strong>.</p>
+        <div class="top20-insights">
+          <div class="top20-insight"><strong>Recorte selecionado</strong><span>${cfg.label}</span></div>
+          <div class="top20-insight"><strong>Maior média 2025</strong><span>${maior ? maior.nome : 'N/D'}</span></div>
+          <div class="top20-insight"><strong>Menor média 2025</strong><span>${menor ? menor.nome : 'N/D'}</span></div>
+          <div class="top20-insight"><strong>Maior desvio histórico</strong><span>${maiorDelta ? maiorDelta.nome : 'N/D'}</span></div>
+        </div>
+      </div>
+      <div class="top20-thinking">
+        <div class="top20-thinking-title">◈ Rotina de pensamento pedagógico</div>
+        <div class="thinking-grid">
+          <div class="thinking-block"><strong>1. Compreender o dado</strong><ul><li>O que esse número quer dizer?</li><li>Ele representa alta performance inicial, consistente, elite ou teto?</li><li>2025 confirma ou rompe o padrão histórico?</li></ul></div>
+          <div class="thinking-block"><strong>2. Tomar decisão pedagógica</strong><ul><li>Que decisão pedagógica posso tomar?</li><li>É preciso ampliar repertório, aumentar precisão ou treinar gestão de prova?</li><li>Qual intervenção pode ser medida no próximo ciclo?</li></ul></div>
+          <div class="thinking-block"><strong>3. Identificar prioridade</strong><ul><li>Qual área exige mais atenção?</li><li>A distância está em 2025, na média histórica ou na mediana?</li><li>O grupo está equilibrado ou depende de uma área dominante?</li></ul></div>
+          <div class="thinking-block"><strong>4. Diferenciar excelência</strong><ul><li>Qual área diferencia mais os estudantes fortes?</li><li>Onde o teto comparativo está mais alto?</li><li>Que habilidade ou competência sustenta essa diferença?</li></ul></div>
+        </div>
+      </div>`;
+  }
+  function renderBenchmark(){
+    const recorte = document.getElementById('benchmark-recorte')?.value || 'top10';
+    const cards = document.getElementById('benchmark-cards');
+    const chart = document.getElementById('benchmark-chart');
+    const table = document.getElementById('benchmark-table');
+    const note = document.getElementById('benchmark-note');
+    if(!cards || !chart || !table || !note) return;
+    const cfg = RECORTES[recorte] || {label:recorte, conceito:''};
+    const serie = serieCompleta(recorte);
+    const temDados = serie.some(s=>n(s.valor2025)!==null || n(s.mediaHist)!==null);
+
+    if(!temDados){
+      cards.innerHTML = '<div class="top20-card"><div class="top20-card-area">Base não carregada</div><div class="top20-main-label">Confira se os arquivos JS de benchmark foram enviados para a pasta 2025 e se os nomes das variáveis internas correspondem ao HTML.</div></div>';
+      chart.innerHTML = '';
+      table.innerHTML = '';
+      note.textContent = 'Arquivos esperados: base_benchmark_area_2016_2025.js, base_benchmark_objetiva_2016_2025.js, base_benchmark_historico_area_2016_2025.js, base_benchmark_historico_objetiva_2016_2025.js, base_ranking_top100_objetiva_2025.js e base_metadados_benchmark_alta_performance.js.';
+      renderPedagogiaBenchmark(recorte, []);
+      return;
+    }
+
+    cards.innerHTML = serie.map(s=>cardBenchmark(s,'2025',cfg)).join('') + serie.map(s=>cardBenchmark(s,'hist',cfg)).join('');
+
+    const barras = serie.filter(s=>n(s.valor2025)!==null);
+    const max = Math.max(...barras.map(s=>s.valor2025),1);
+    chart.innerHTML = barras.map(s=>`<div class="top20-bar">
+      <div class="top20-bar-fill" style="height:${Math.max(4,(s.valor2025/max)*105)}px"></div>
+      <strong>${fmtNum(s.valor2025,0)}</strong>
+      <span>${s.codigo}</span>
+    </div>`).join('');
+
+    const anos = [];
+    for(let ano=2016; ano<=2025; ano++) anos.push(ano);
+    table.innerHTML = `
+      <table class="top20-table benchmark-year-table">
+        <thead><tr>
+          <th>Ano</th><th>CH</th><th>CN</th><th>LC</th><th>MT</th><th>Média objetiva</th>
+        </tr></thead>
+        <tbody>
+          ${anos.map(ano=>`<tr>
+            <td><strong>${ano}</strong></td>
+            ${serie.map(s=>`<td>${cellNotaAcertos(s.valoresPorAno[ano], s.acertosPorAno ? s.acertosPorAno[ano] : null)}</td>`).join('')}
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+
+    const ranking = arr(['BASE_RANKING_TOP100_OBJETIVA_2025','base_ranking_top100_objetiva_2025']);
+    const extraTop100 = (recorte === 'top100' && ranking.length)
+      ? ` A base de auditoria do Top 100 objetiva 2025 contém ${fmtInt(ranking.length)} estudantes.`
+      : '';
+    note.textContent = `Recorte selecionado: ${cfg.label} — ${cfg.conceito}. A tela mostra 10 cards: 5 médias de 2025 (CH, CN, LC, MT e média objetiva) e 5 médias históricas de 2016–2025 para os mesmos indicadores. Em cada card, a nota é acompanhada pela média de acertos do respectivo recorte.${extraTop100}`;
+    renderPedagogiaBenchmark(recorte, serie);
+  }
+  function setupBenchmark(){
+    const rec = document.getElementById('benchmark-recorte');
+    if(!rec) return;
+    rec.addEventListener('change', renderBenchmark);
+    renderBenchmark();
+  }
+
+
+  function baseSisu(){
+    return Array.isArray(window.BASE_SISU_2026_SIMULADOR) ? window.BASE_SISU_2026_SIMULADOR : [];
+  }
+
+  function uniqueSorted(arr){
+    return [...new Set(arr.filter(v=>v !== undefined && v !== null && String(v).trim() !== '').map(v=>String(v).trim()))]
+      .sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  }
+
+  function setSelectOptions(id, valores, placeholder, disabled=false){
+    const sel = document.getElementById(id);
+    if(!sel) return;
+    sel.innerHTML = `<option value="">${placeholder}</option>` + valores.map(v=>{
+      if(typeof v === 'object'){
+        return `<option value="${String(v.value).replace(/"/g,'&quot;')}">${v.label}</option>`;
+      }
+      return `<option value="${String(v).replace(/"/g,'&quot;')}">${v}</option>`;
+    }).join('');
+    sel.disabled = disabled;
+  }
+
+  function sisuFiltroParcial(nivel){
+    let dados = baseSisu();
+    const uf = document.getElementById('sisu-uf')?.value || '';
+    const ies = document.getElementById('sisu-ies')?.value || '';
+    const cp = document.getElementById('sisu-campus')?.value || '';
+    const cu = document.getElementById('sisu-curso')?.value || '';
+
+    if(uf) dados = dados.filter(d=>d.uf === uf);
+    if(nivel >= 2 && ies) dados = dados.filter(d=>d.ies === ies);
+    if(nivel >= 3 && cp) dados = dados.filter(d=>d.cp === cp);
+    if(nivel >= 4 && cu) dados = dados.filter(d=>d.cu === cu);
+    return dados;
+  }
+
+  function getSisuSelecionado(){
+    const id = n(document.getElementById('sisu-modalidade')?.value);
+    if(id === null) return null;
+    return baseSisu().find(d=>Number(d.id) === Number(id)) || null;
+  }
+
+  function preencherSisuUF(){
+    const base = baseSisu();
+    if(!base.length){
+      setSelectOptions('sisu-uf', [], 'Base SiSU não carregada', true);
+      const note = document.getElementById('sisu-note');
+      if(note) note.textContent = 'A base base_sisu_2026_simulador_minima.js não foi carregada. Confira se o arquivo está em ./2025/.';
+      return;
+    }
+    setSelectOptions('sisu-uf', uniqueSorted(base.map(d=>d.uf)), 'Selecione a UF...');
+    setSelectOptions('sisu-ies', [], 'Selecione a UF...', true);
+    setSelectOptions('sisu-campus', [], 'Selecione a universidade...', true);
+    setSelectOptions('sisu-curso', [], 'Selecione o campus...', true);
+    setSelectOptions('sisu-modalidade', [], 'Selecione o curso...', true);
+  }
+
+  function atualizarSisuIES(){
+    const dados = sisuFiltroParcial(1);
+    setSelectOptions('sisu-ies', uniqueSorted(dados.map(d=>d.ies)), 'Selecione a universidade...', !dados.length);
+    setSelectOptions('sisu-campus', [], 'Selecione a universidade...', true);
+    setSelectOptions('sisu-curso', [], 'Selecione o campus...', true);
+    setSelectOptions('sisu-modalidade', [], 'Selecione o curso...', true);
+    calcSisu();
+  }
+
+  function atualizarSisuCampus(){
+    const dados = sisuFiltroParcial(2);
+    setSelectOptions('sisu-campus', uniqueSorted(dados.map(d=>d.cp)), 'Selecione o campus...', !dados.length);
+    setSelectOptions('sisu-curso', [], 'Selecione o campus...', true);
+    setSelectOptions('sisu-modalidade', [], 'Selecione o curso...', true);
+    calcSisu();
+  }
+
+  function atualizarSisuCurso(){
+    const dados = sisuFiltroParcial(3);
+    setSelectOptions('sisu-curso', uniqueSorted(dados.map(d=>d.cu)), 'Selecione o curso...', !dados.length);
+    setSelectOptions('sisu-modalidade', [], 'Selecione o curso...', true);
+    calcSisu();
+  }
+
+  function atualizarSisuModalidade(){
+    const dados = sisuFiltroParcial(4);
+    const opts = dados
+      .slice()
+      .sort((a,b)=>String(a.mod).localeCompare(String(b.mod),'pt-BR'))
+      .map(d=>({
+        value:d.id,
+        label:`${d.mod}${d.c && d.c > 0 ? ` — corte ${fmtNum(d.c,2)}` : ' — sem corte válida'}`
+      }));
+    setSelectOptions('sisu-modalidade', opts, 'Selecione a modalidade...', !opts.length);
+    calcSisu();
+  }
+
+  function pesosSisu(item){
+    if(!item) return [];
+    return [
+      {id:'cn', nome:'CN', peso:Number(item.cn)||0},
+      {id:'ch', nome:'CH', peso:Number(item.ch)||0},
+      {id:'lc', nome:'LC', peso:Number(item.lc)||0},
+      {id:'mt', nome:'MT', peso:Number(item.mt)||0},
+      {id:'red', nome:'Redação', peso:Number(item.red)||0}
+    ];
+  }
+
+  function calcSisu(){
+    const item = getSisuSelecionado();
+    const results = document.getElementById('sisu-results');
+    const impact = document.getElementById('sisu-impact');
+    const note = document.getElementById('sisu-note');
+    const selected = document.getElementById('sisu-selected-option');
+    if(!results || !impact || !note) return;
+
+    if(!item){
+      results.innerHTML = `
+        <div class="sisu-result-card">
+          <div class="sisu-main-value">—</div>
+          <div class="sisu-main-label">selecione uma opção SiSU</div>
+        </div>`;
+      impact.innerHTML = '';
+      note.textContent = 'Depois da escolha da opção SiSU, o painel carregará automaticamente os pesos por área e comparará a média ponderada com a nota de corte disponível.';
+      if(selected) selected.innerHTML = 'Selecione uma opção SiSU para carregar pesos, nota de corte e diagnóstico.';
+      return;
+    }
+
+    const pesos = pesosSisu(item);
+    const somaPesos = pesos.reduce((s,p)=>s+p.peso,0);
+    const corteValida = item.c && Number(item.c) > 0;
+    const bonus = Number(item.b) || 0;
+
+    if(selected){
+      selected.innerHTML = `
+        <strong>${item.ies}</strong> · ${item.cp}<br>
+        <strong>${item.cu}</strong><br>
+        Modalidade: <strong>${item.mod}</strong> · Corte: <strong>${corteValida ? fmtNum(item.c,2) : 'sem corte válida'}</strong> · Pesos: CN ${item.cn}, CH ${item.ch}, LC ${item.lc}, MT ${item.mt}, Redação ${item.red}${bonus>0 ? ` · Bônus: ${fmtNum(bonus,1)}%` : ''}`;
+    }
+
+    const notas = pesos.map(p=>({
+      ...p,
+      nota:n(document.getElementById(`calc-nota-${p.id}`)?.value)
+    }));
+    const preenchidas = notas.filter(v=>v.nota !== null);
+
+    if(preenchidas.length < 5 || somaPesos <= 0){
+      results.innerHTML = `
+        <div class="sisu-result-card"><div class="sisu-main-value">${corteValida ? fmtNum(item.c,2) : '—'}</div><div class="sisu-main-label">nota de corte</div></div>
+        <div class="sisu-result-card"><div class="sisu-main-value">${fmtNum(somaPesos,0)}</div><div class="sisu-main-label">soma dos pesos</div></div>
+        <div class="sisu-result-card"><div class="sisu-main-value">—</div><div class="sisu-main-label">digite as 5 notas</div></div>`;
+      impact.innerHTML = `
+        <table class="sisu-impact-table">
+          <thead><tr><th>Área</th><th>Peso</th><th>Participação no cálculo</th><th>Impacto de +20 pontos</th></tr></thead>
+          <tbody>
+            ${pesos.map(p=>{
+              const part = somaPesos > 0 ? p.peso/somaPesos*100 : 0;
+              const ganho = somaPesos > 0 ? 20*p.peso/somaPesos : 0;
+              return `<tr><td><strong>${p.nome}</strong></td><td>${fmtNum(p.peso,0)}</td><td>${fmtPct(part,1)}</td><td>+${fmtNum(ganho,1)} ponto(s)</td></tr>`;
+            }).join('')}
+          </tbody>
+        </table>`;
+      note.textContent = corteValida
+        ? 'Informe as cinco notas TRI para calcular a média ponderada e comparar com a nota de corte da modalidade selecionada.'
+        : 'Esta opção não possui nota de corte válida na base analisada. A média ponderada será calculada, mas sem comparação de corte.';
+      return;
+    }
+
+    const mediaBase = notas.reduce((s,v)=>s+(v.nota*v.peso),0)/somaPesos;
+    const mediaFinal = bonus > 0 ? Math.min(1000, mediaBase * (1 + bonus/100)) : mediaBase;
+    const dif = corteValida ? mediaFinal - Number(item.c) : null;
+    const maiorPeso = Math.max(...pesos.map(p=>p.peso));
+    const alavancas = pesos.filter(p=>p.peso === maiorPeso && maiorPeso>0).map(p=>p.nome).join(', ');
+
+    let status = 'Sem corte válida';
+    let statusClass = 'sisu-status-warn';
+    if(corteValida){
+      if(dif >= 20){ status = 'Acima com boa margem'; statusClass = 'sisu-status-ok'; }
+      else if(dif >= 0){ status = 'Acima, margem estreita'; statusClass = 'sisu-status-ok'; }
+      else if(dif >= -20){ status = 'Abaixo, mas próximo'; statusClass = 'sisu-status-warn'; }
+      else { status = 'Abaixo da referência'; statusClass = 'sisu-status-risk'; }
+    }
+
+    results.innerHTML = `
+      <div class="sisu-result-card"><div class="sisu-main-value">${fmtNum(mediaFinal,2)}</div><div class="sisu-main-label">sua média SiSU${bonus>0?' com bônus':''}</div></div>
+      <div class="sisu-result-card"><div class="sisu-main-value">${corteValida ? fmtNum(item.c,2) : '—'}</div><div class="sisu-main-label">nota de corte</div></div>
+      <div class="sisu-result-card ${statusClass}"><div class="sisu-main-value">${corteValida ? (dif>=0?'+':'') + fmtNum(dif,2) : '—'}</div><div class="sisu-main-label">diferença em pontos</div></div>
+      <div class="sisu-result-card ${statusClass}"><div class="sisu-main-value">${status}</div><div class="sisu-main-label">status estratégico</div></div>`;
+
+    const rows = pesos.map(p=>{
+      const ganho20 = 20 * p.peso / somaPesos;
+      const participacao = p.peso / somaPesos * 100;
+      return {...p, ganho20, participacao};
+    }).sort((a,b)=>b.ganho20-a.ganho20);
+
+    impact.innerHTML = `
+      <table class="sisu-impact-table">
+        <thead><tr><th>Área</th><th>Peso</th><th>Participação</th><th>Impacto de +20 pontos</th></tr></thead>
+        <tbody>
+          ${rows.map(r=>`<tr><td><strong>${r.nome}</strong></td><td>${fmtNum(r.peso,0)}</td><td>${fmtPct(r.participacao,1)}</td><td>+${fmtNum(r.ganho20,1)} ponto(s) na média SiSU</td></tr>`).join('')}
+        </tbody>
+      </table>`;
+
+    if(!corteValida){
+      note.textContent = `Sua média ponderada foi calculada, mas esta opção não possui nota de corte válida disponível na base SiSU analisada. As áreas de maior impacto neste curso são: ${alavancas}.`;
+    }else if(dif >= 0){
+      note.textContent = `Você está ${fmtNum(Math.abs(dif),2)} ponto(s) acima da nota de corte registrada para esta opção. As áreas de maior impacto neste curso são: ${alavancas}. A nota de corte é referência da edição analisada e pode variar.`;
+    }else{
+      note.textContent = `Você está ${fmtNum(Math.abs(dif),2)} ponto(s) abaixo da nota de corte registrada para esta opção. Para aproximar-se da referência, priorize ganhos nas áreas de maior peso: ${alavancas}. A nota de corte é dinâmica e pode variar conforme inscritos, vagas e modalidade.`;
+    }
+  }
+
+  function setupSisu(){
+    preencherSisuUF();
+
+    const uf = document.getElementById('sisu-uf');
+    const ies = document.getElementById('sisu-ies');
+    const campus = document.getElementById('sisu-campus');
+    const curso = document.getElementById('sisu-curso');
+    const modalidade = document.getElementById('sisu-modalidade');
+
+    if(uf) uf.addEventListener('change', atualizarSisuIES);
+    if(ies) ies.addEventListener('change', atualizarSisuCampus);
+    if(campus) campus.addEventListener('change', atualizarSisuCurso);
+    if(curso) curso.addEventListener('change', atualizarSisuModalidade);
+    if(modalidade) modalidade.addEventListener('change', calcSisu);
+
+    const inputs = document.querySelectorAll('#secao-calculadora-sisu input');
+    inputs.forEach(i=>i.addEventListener('input', calcSisu));
+
+    const exemplo = document.getElementById('calc-exemplo');
+    if(exemplo){
+      exemplo.addEventListener('click', ()=>{
+        const valores = {cn:650,ch:680,lc:620,mt:720,red:880};
+        Object.entries(valores).forEach(([k,v])=>{
+          const el = document.getElementById(`calc-nota-${k}`);
+          if(el) el.value = v;
+        });
+        calcSisu();
+      });
+    }
+
+    const limpar = document.getElementById('calc-limpar');
+    if(limpar){
+      limpar.addEventListener('click', ()=>{
+        ['cn','ch','lc','mt','red'].forEach(k=>{
+          const el = document.getElementById(`calc-nota-${k}`);
+          if(el) el.value = '';
+        });
+        calcSisu();
+      });
+    }
+
+    calcSisu();
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    setupBenchmark();
+    setupSisu();
+  });
+})();</script>
+
+<script>
+function irParaModulo(id){
+  const alvo = document.getElementById(id);
+  if(alvo){ alvo.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+function voltarAoMenuModulos(){
+  const alvo = document.getElementById('menu-modulos');
+  if(alvo){ alvo.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+</script>
+
 </body>
 </html>
