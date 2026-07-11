@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- VERSAO AJUSTADA 2016-2025 + BENCHMARK ALTA PERFORMANCE + LEITURA PEDAGOGICA + ROTINA DE PENSAMENTO -->
+<!-- VERSAO AJUSTADA 2016-2025 + TOPS POR ITEM + BENCHMARK ALTA PERFORMANCE + LEITURA PEDAGOGICA -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -121,6 +121,39 @@ main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:2.5rem 1
 .progress-bar-inner.anulado{background:linear-gradient(90deg,#6B7280,#9CA3AF);}
 .conselho-card.anulado{background:rgba(138,160,204,0.10);border-color:rgba(138,160,204,0.30);} 
 
+
+
+/* ── RECORTE DE DESEMPENHO DO ITEM ── */
+.recorte-note{
+  background:linear-gradient(135deg,rgba(0,201,255,0.08),rgba(123,63,212,0.10));
+  border:1px solid rgba(0,201,255,0.24);
+  border-left:4px solid var(--excelente);
+  border-radius:14px;
+  padding:0.95rem 1.05rem;
+  margin-bottom:1.5rem;
+  font-size:0.76rem;
+  line-height:1.58;
+  color:var(--off-white);
+}
+.recorte-note strong{color:var(--excelente);}
+.recorte-note .recorte-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:0.65rem;
+}
+.recorte-pill{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 9px;
+  border-radius:999px;
+  background:rgba(14,27,61,0.68);
+  border:1px solid rgba(74,159,255,0.25);
+  color:var(--off-white);
+  font-size:0.60rem;
+  font-weight:800;
+  letter-spacing:0.05em;
+}
 
 /* ── CROSS CARD ── */
 .cross-card{background:rgba(22,36,81,0.7);border:1px solid rgba(74,159,255,0.2);
@@ -642,6 +675,17 @@ html{scroll-behavior:smooth;}
           <option value="MT">Matemática (Q. 136–180)</option>
         </select>
       </div>
+      <div class="filter-group">
+        <label>Recorte de desempenho</label>
+        <select id="sel-recorte" onchange="onRecorteChange()">
+          <option value="todos">Todos os participantes</option>
+          <option value="top10">Top 10% da área</option>
+          <option value="top5">Top 5% da área</option>
+          <option value="top1">Top 1% da área</option>
+          <option value="top100">Top 100 nacional da área</option>
+        </select>
+        <div class="range-hint" style="display:block;">Ranking pela nota oficial da área selecionada.</div>
+      </div>
       <div class="filter-group lingua-group" id="grupo-lingua">
         <label>Língua Estrangeira (LC)</label>
         <select id="sel-lingua" onchange="onLinguaChange()">
@@ -835,6 +879,16 @@ html{scroll-behavior:smooth;}
 <script src="./2023/base_enem_2023.js"></script>
 <script src="./2024/base_enem_2024.js"></script>
 <script src="./2025/base_enem_2025.js"></script>
+<script src="./2016/base_itens_top_performance_2016.js"></script>
+<script src="./2017/base_itens_top_performance_2017.js"></script>
+<script src="./2018/base_itens_top_performance_2018.js"></script>
+<script src="./2019/base_itens_top_performance_2019.js"></script>
+<script src="./2020/base_itens_top_performance_2020.js"></script>
+<script src="./2021/base_itens_top_performance_2021.js"></script>
+<script src="./2022/base_itens_top_performance_2022.js"></script>
+<script src="./2023/base_itens_top_performance_2023.js"></script>
+<script src="./2024/base_itens_top_performance_2024.js"></script>
+<script src="./2025/base_itens_top_performance_2025.js"></script>
 <!-- Bases dos módulos de Alta Performance e SiSU: ficam dentro de 04_html/escolas/2025/ -->
 <script src="./2025/base_benchmark_area_2016_2025.js"></script>
 <script src="./2025/base_benchmark_objetiva_2016_2025.js"></script>
@@ -1082,6 +1136,138 @@ Object.keys(BASES_ENEM).forEach(anoBase => {
   DBS[anoBase] = montarDB(BASES_ENEM[anoBase]);
 });
 
+
+const BASES_ITENS_TOP = {
+  2016: (typeof BASE_ITENS_TOP_PERFORMANCE_2016 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2016 : (window.BASE_ITENS_TOP_PERFORMANCE_2016 || [])),
+  2017: (typeof BASE_ITENS_TOP_PERFORMANCE_2017 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2017 : (window.BASE_ITENS_TOP_PERFORMANCE_2017 || [])),
+  2018: (typeof BASE_ITENS_TOP_PERFORMANCE_2018 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2018 : (window.BASE_ITENS_TOP_PERFORMANCE_2018 || [])),
+  2019: (typeof BASE_ITENS_TOP_PERFORMANCE_2019 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2019 : (window.BASE_ITENS_TOP_PERFORMANCE_2019 || [])),
+  2020: (typeof BASE_ITENS_TOP_PERFORMANCE_2020 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2020 : (window.BASE_ITENS_TOP_PERFORMANCE_2020 || [])),
+  2021: (typeof BASE_ITENS_TOP_PERFORMANCE_2021 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2021 : (window.BASE_ITENS_TOP_PERFORMANCE_2021 || [])),
+  2022: (typeof BASE_ITENS_TOP_PERFORMANCE_2022 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2022 : (window.BASE_ITENS_TOP_PERFORMANCE_2022 || [])),
+  2023: (typeof BASE_ITENS_TOP_PERFORMANCE_2023 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2023 : (window.BASE_ITENS_TOP_PERFORMANCE_2023 || [])),
+  2024: (typeof BASE_ITENS_TOP_PERFORMANCE_2024 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2024 : (window.BASE_ITENS_TOP_PERFORMANCE_2024 || [])),
+  2025: (typeof BASE_ITENS_TOP_PERFORMANCE_2025 !== 'undefined' ? BASE_ITENS_TOP_PERFORMANCE_2025 : (window.BASE_ITENS_TOP_PERFORMANCE_2025 || []))
+};
+
+const RECORTES_ITEM = {
+  todos: {
+    label: 'Todos os participantes',
+    descricao: 'Distribuição observada entre todos os participantes elegíveis que receberam este caderno.'
+  },
+  top10: {
+    label: 'Top 10% da área',
+    descricao: 'Participantes posicionados entre os 10% de maior nota oficial na área.'
+  },
+  top5: {
+    label: 'Top 5% da área',
+    descricao: 'Participantes posicionados entre os 5% de maior nota oficial na área.'
+  },
+  top1: {
+    label: 'Top 1% da área',
+    descricao: 'Participantes posicionados entre o 1% de maior nota oficial na área.'
+  },
+  top100: {
+    label: 'Top 100 nacional da área',
+    descricao: 'Os 100 maiores desempenhos nacionais da área. O número exibido no item corresponde somente aos integrantes que receberam este caderno.'
+  }
+};
+
+function getRecorteSelecionado(){
+  const el = document.getElementById('sel-recorte');
+  return el ? el.value : 'todos';
+}
+
+function normalizarLinguaTop(v){
+  if(v === undefined || v === null || v === '') return '';
+  const txt = String(v).toLowerCase();
+  if(txt === '0' || txt.includes('ing')) return '0';
+  if(txt === '1' || txt.includes('esp')) return '1';
+  return '';
+}
+
+function localizarRegistroTop(q, recorte = getRecorteSelecionado()){
+  const base = BASES_ITENS_TOP[String(ANO_ATUAL)] || [];
+  if(!Array.isArray(base) || !base.length || !q) return null;
+
+  const area = String(q.area || '');
+  const prova = String(q.prova ?? '');
+  const item = String(q.co_item ?? '');
+  const posArea = Number(q.posicao_area);
+  const linguaSel = getLinguaSelecionada();
+
+  const candidatos = base.filter(r =>
+    String(r.area || '') === area &&
+    String(r.co_prova ?? '') === prova &&
+    String(r.co_item ?? '') === item &&
+    Number(r.co_posicao_area) === posArea &&
+    String(r.recorte || '') === String(recorte)
+  );
+
+  if(candidatos.length <= 1 || area !== 'LC' || posArea > 5) return candidatos[0] || null;
+
+  return candidatos.find(r => {
+    const lr = normalizarLinguaTop(r.lingua_item);
+    return !lr || lr === linguaSel;
+  }) || candidatos[0] || null;
+}
+
+function aplicarRecorteItem(q, recorte = getRecorteSelecionado()){
+  const r = localizarRegistroTop(q, recorte);
+  if(!r) return q;
+
+  const nGrupo = Number(r.n_grupo) || 0;
+  const nAcertos = numeroValido(r.n_acertos) ? Number(r.n_acertos) : 0;
+  const nSem = Number(r.n_sem_resposta) || 0;
+
+  return Object.assign({}, q, {
+    estudantes: nGrupo,
+    total: nGrupo,
+    acertos: nAcertos,
+    erros: Math.max(nGrupo - nAcertos, 0),
+    taxa_acerto: numeroValido(r.taxa_acerto) ? Number(r.taxa_acerto) : null,
+    pct: numeroValido(r.taxa_acerto) ? Number(r.taxa_acerto) : null,
+    n_respostas_validas: Number(r.n_respostas_validas) || 0,
+    n_sem_resposta: nSem,
+    pct_sem_resposta: numeroValido(r.pct_sem_resposta) ? Number(r.pct_sem_resposta) : null,
+    nota_corte_recorte: numeroValido(r.nota_corte) ? Number(r.nota_corte) : null,
+    recorte_item: recorte,
+    alt_dist: {
+      A: {n:Number(r.n_alt_a)||0, pct:numeroValido(r.pct_alt_a)?Number(r.pct_alt_a):0},
+      B: {n:Number(r.n_alt_b)||0, pct:numeroValido(r.pct_alt_b)?Number(r.pct_alt_b):0},
+      C: {n:Number(r.n_alt_c)||0, pct:numeroValido(r.pct_alt_c)?Number(r.pct_alt_c):0},
+      D: {n:Number(r.n_alt_d)||0, pct:numeroValido(r.pct_alt_d)?Number(r.pct_alt_d):0},
+      E: {n:Number(r.n_alt_e)||0, pct:numeroValido(r.pct_alt_e)?Number(r.pct_alt_e):0}
+    }
+  });
+}
+
+function getRecorteNoteHTML(q){
+  const recorte = getRecorteSelecionado();
+  const cfg = RECORTES_ITEM[recorte] || RECORTES_ITEM.todos;
+  const corte = numeroValido(q.nota_corte_recorte) && recorte !== 'todos'
+    ? `<span class="recorte-pill">Nota de corte: ${fmtNum(q.nota_corte_recorte,1)}</span>`
+    : '';
+  const sem = numeroValido(q.pct_sem_resposta)
+    ? `<span class="recorte-pill">Sem resposta: ${fmtPct(q.pct_sem_resposta,2)}</span>`
+    : '';
+  const validas = numeroValido(q.n_respostas_validas)
+    ? `<span class="recorte-pill">${fmtInt(q.n_respostas_validas)} respostas A–E</span>`
+    : '';
+
+  return `
+    <div class="recorte-note">
+      <strong>${cfg.label}</strong> — ${cfg.descricao}
+      <div class="recorte-meta">
+        <span class="recorte-pill">${fmtInt(q.estudantes)} respondentes neste item/caderno</span>
+        ${validas}
+        ${sem}
+        ${corte}
+      </div>
+    </div>`;
+}
+
+
 let ANO_ATUAL = '2025';
 
 const AREA_NAMES={LC:'Linguagens e Códigos',CH:'Ciências Humanas',CN:'Ciências da Natureza',MT:'Matemática'};
@@ -1207,8 +1393,17 @@ function resetResultado(){
   document.getElementById('result').style.display='none';
   document.getElementById('placeholder').style.display='block';
 }
+function onRecorteChange(){
+  const result = document.getElementById('result');
+  if(result && result.style.display !== 'none' && result.innerHTML.trim()){
+    buscar();
+  }else{
+    resetResultado();
+  }
+}
+
 function onAnoChange(){
-  ANO_ATUAL = document.getElementById('sel-ano').value || '2024';
+  ANO_ATUAL = document.getElementById('sel-ano').value || '2025';
   document.getElementById('sel-area').value='';
   if(document.getElementById('sel-lingua')) document.getElementById('sel-lingua').value='';
   onAreaChange();
@@ -1230,6 +1425,7 @@ function limparFiltros(){
   document.getElementById('sel-area').value='';
   if(document.getElementById('sel-lingua')) document.getElementById('sel-lingua').value='';
   if(document.getElementById('sel-modo')) document.getElementById('sel-modo').value='questao';
+  if(document.getElementById('sel-recorte')) document.getElementById('sel-recorte').value='todos';
   onAreaChange();
   document.getElementById('placeholder').style.display='block';
   document.getElementById('result').style.display='none';
@@ -1324,7 +1520,8 @@ function onPosChange(){
 }
 
 function getCrossItems(area,q){
-  return [q,...Object.entries(q.cross||{}).map(([cor,pos])=>getQuestoesFiltradas(area).find(x=>x.cor===cor&&x.posicao===pos)).filter(Boolean)];
+  const itens = [q,...Object.entries(q.cross||{}).map(([cor,pos])=>getQuestoesFiltradas(area).find(x=>x.cor===cor&&x.posicao===pos)).filter(Boolean)];
+  return itens.map(item=>aplicarRecorteItem(item));
 }
 
 function getCrossAggregate(area,q){
@@ -1831,7 +2028,10 @@ function buscar(){
     return;
   }
 
-  const q=qs[0];
+  const qBase=qs[0];
+  const q=aplicarRecorteItem(qBase);
+  const recorteAtual=getRecorteSelecionado();
+  const recorteCfg=RECORTES_ITEM[recorteAtual] || RECORTES_ITEM.todos;
   const cls=getClasse(q.taxa_acerto),clsLabel=getClasseLabel(cls),clsColor=getClasseColor(cls);
   const agg=getCrossAggregate(area,q);
   const aggCls=getClasse(agg.pct),aggLabel=getClasseLabel(aggCls),aggColor=getClasseColor(aggCls);
@@ -1851,6 +2051,7 @@ function buscar(){
           <span class="tag tag-cor ${cor}">${COR_LABELS[cor]||cor}</span>
           <span class="tag tag-tri">${getHabilidadeTexto(q)}</span>
           <span class="tag tag-tri">${q.tri}</span>
+          <span class="tag tag-tri">${recorteCfg.label}</span>
           ${modo==='habilidade'?`<span class="tag tag-tri">Consulta por habilidade</span>`:''}
           ${q.item_anulado?`<span class="tag" style="background:rgba(138,160,204,0.16);border:1px solid rgba(138,160,204,0.35);color:var(--text-muted);">Item anulado</span>`:''}
         </div>
@@ -1863,12 +2064,14 @@ function buscar(){
       </div>
     </div>
 
+    ${getRecorteNoteHTML(q)}
+
     ${buildCrossCard(area,q)}
 
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-label">Acertos</div><div class="kpi-value">${fmtInt(q.acertos)}</div><div class="kpi-unit">de ${fmtInt(q.estudantes)} respostas</div></div>
+      <div class="kpi-card"><div class="kpi-label">Acertos</div><div class="kpi-value">${fmtInt(q.acertos)}</div><div class="kpi-unit">de ${fmtInt(q.estudantes)} participantes do recorte</div></div>
       <div class="kpi-card"><div class="kpi-label">Erros</div><div class="kpi-value">${fmtInt(q.erros)}</div><div class="kpi-unit">respostas incorretas</div></div>
-      <div class="kpi-card"><div class="kpi-label">Taxa de Acerto</div><div class="kpi-value">${fmtPct(q.taxa_acerto)}</div><div class="kpi-unit">neste caderno</div></div>
+      <div class="kpi-card"><div class="kpi-label">Taxa de Acerto</div><div class="kpi-value">${fmtPct(q.taxa_acerto)}</div><div class="kpi-unit">neste caderno · ${fmtPct(q.pct_sem_resposta,2)} sem resposta</div></div>
     </div>
 
     ${buildAltCard(area,q)}
