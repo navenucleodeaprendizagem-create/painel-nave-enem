@@ -1044,7 +1044,7 @@ function montarDB(base){
     const statusItem = primeiroValor(item, ['status_item'], item.item_anulado ? 'Item anulado' : 'Item válido');
     const itemAnulado = item.item_anulado === true || statusItem === 'Item anulado';
     const posicao = Number(primeiroValor(item, ['co_posicao_global','posicao_questao','co_posicao','co_posicao_area'], null));
-    const posicaoArea = Number(primeiroValor(item, ['co_posicao_area','posicao_questao','co_posicao','co_posicao_global'], posicao));
+    const posicaoArea = Number(primeiroValor(item, ['co_posicao_area','posicao_area','posicao_questao','co_posicao','co_posicao_global'], posicao));
     const cor = normalizarCor(primeiroValor(item, ['cor_caderno','cor'], ''));
     const lingua = primeiroValor(item, ['tp_lingua','lingua'], null);
     const linguaEstrangeira = primeiroValor(item, ['lingua_estrangeira'], null);
@@ -1186,39 +1186,135 @@ function normalizarLinguaTop(v){
   return '';
 }
 
+function normalizarRecorteItem(v){
+  const txt = String(v ?? '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().replace(/[^a-z0-9]+/g,'');
+  if(!txt || txt === 'todos' || txt.includes('todososparticipantes')) return 'todos';
+  if(txt.includes('top100') || txt.includes('100melhores')) return 'top100';
+  if(txt.includes('top10') || txt.includes('p90')) return 'top10';
+  if(txt.includes('top5') || txt.includes('p95')) return 'top5';
+  if(txt.includes('top1') || txt.includes('p99')) return 'top1';
+  return txt;
+}
+
 function localizarRegistroTop(q, recorte = getRecorteSelecionado()){
   const base = BASES_ITENS_TOP[String(ANO_ATUAL)] || [];
   if(!Array.isArray(base) || !base.length || !q) return null;
 
-  const area = String(q.area || '');
-  const prova = String(q.prova ?? '');
-  const item = String(q.co_item ?? '');
+  const area = normalizarAreaPainel(q.area);
+  const prova = String(q.prova ?? '').trim();
+  const item = String(q.co_item ?? '').trim();
   const posArea = Number(q.posicao_area);
   const linguaSel = getLinguaSelecionada();
+  const recorteNormalizado = normalizarRecorteItem(recorte);
 
-  const candidatos = base.filter(r =>
-    String(r.area || '') === area &&
-    String(r.co_prova ?? '') === prova &&
-    String(r.co_item ?? '') === item &&
+  const correspondeLingua = r => {
+    if(area !== 'LC' || posArea > 5) return true;
+    const lr = normalizarLinguaTop(r.lingua_item ?? r.tp_lingua);
+    return !lr || lr === linguaSel;
+  };
+
+  // 1) Correspondência exata: área + prova + item + posição na área + recorte.
+  let candidatos = base.filter(r =>
+    normalizarAreaPainel(r.area || r.sg_area) === area &&
+    String(r.co_prova ?? '').trim() === prova &&
+    String(r.co_item ?? '').trim() === item &&
     Number(r.co_posicao_area) === posArea &&
-    String(r.recorte || '') === String(recorte)
+    normalizarRecorteItem(r.recorte || r.criterio_top || r.tipo_recorte) === recorteNormalizado
   );
 
-  if(candidatos.length <= 1 || area !== 'LC' || posArea > 5) return candidatos[0] || null;
+  let localizado = candidatos.find(correspondeLingua) || candidatos[0] || null;
+  if(localizado) return localizado;
 
-  return candidatos.find(r => {
-    const lr = normalizarLinguaTop(r.lingua_item);
-    return !lr || lr === linguaSel;
-  }) || candidatos[0] || null;
+  // 2) Fallback por co_item. Os indicadores da base são consolidados para o mesmo item
+  // em todos os cadernos. Isso cobre, sobretudo, os cadernos laranja/roxo de 2024,
+  // ausentes como provas próprias na base de recortes, mas compostos por itens já presentes.
+  candidatos = base.filter(r =>
+    normalizarAreaPainel(r.area || r.sg_area) === area &&
+    String(r.co_item ?? '').trim() === item &&
+    normalizarRecorteItem(r.recorte || r.criterio_top || r.tipo_recorte) === recorteNormalizado
+  );
+
+  localizado = candidatos.find(correspondeLingua) || candidatos[0] || null;
+  if(localizado){
+    console.info('Recorte localizado por co_item consolidado entre cadernos', {
+      ano: ANO_ATUAL, recorte: recorteNormalizado, area, provaSolicitada: prova,
+      provaFonte: localizado.co_prova, co_item: item, posicao_area: posArea
+    });
+  }
+  return localizado;
+}
+
+function montarDistribuicaoInteiraRecorte(r){
+  const letras = ['A','B','C','D','E'];
+  const nGrupo = numeroValido(r.n_grupo) ? Math.max(0, Math.round(Number(r.n_grupo))) : 0;
+  const nSem = numeroValido(r.n_sem_resposta) ? Math.max(0, Math.round(Number(r.n_sem_resposta))) : 0;
+  const nValidasInformado = numeroValido(r.n_respostas_validas)
+    ? Math.max(0, Math.round(Number(r.n_respostas_validas)))
+    : Math.max(0, nGrupo - nSem);
+
+  // A base já contém contagens inteiras exatas por alternativa. Elas são a fonte prioritária.
+  const contagensRaw = letras.map(alt => {
+    const k = alt.toLowerCase();
+    return numeroValido(r[`n_alt_${k}`]) ? Math.max(0, Math.round(Number(r[`n_alt_${k}`]))) : null;
+  });
+  const possuiTodasContagens = contagensRaw.every(v => v !== null);
+
+  if(possuiTodasContagens){
+    const soma = contagensRaw.reduce((a,b)=>a+b,0);
+    const denominadorPct = nGrupo > 0 ? nGrupo : (nValidasInformado > 0 ? nValidasInformado : soma);
+    const dist = {};
+    letras.forEach((alt,i) => {
+      const n = contagensRaw[i];
+      dist[alt] = {n, pct: denominadorPct > 0 ? n / denominadorPct * 100 : 0};
+    });
+    if(soma !== nValidasInformado){
+      console.warn('Soma das alternativas difere de n_respostas_validas', {
+        ano: ANO_ATUAL, co_item:r.co_item, recorte:r.recorte,
+        somaAlternativas:soma, n_respostas_validas:nValidasInformado
+      });
+    }
+    return {dist, nRespostasValidas:soma};
+  }
+
+  // Fallback apenas para bases incompletas: reconstrói contagens a partir dos percentuais.
+  const totalAlvo = nValidasInformado;
+  const linhas = letras.map(alt => {
+    const k = alt.toLowerCase();
+    let pct = numeroValido(r[`pct_alt_${k}`]) ? Number(r[`pct_alt_${k}`]) : 0;
+    if(pct <= 1) pct *= 100;
+    const esperado = Math.max(0, pct / 100 * (nGrupo || totalAlvo));
+    return {alt, esperado, n:Math.floor(esperado), resto:esperado-Math.floor(esperado)};
+  });
+  let faltam = totalAlvo - linhas.reduce((s,x)=>s+x.n,0);
+  const ordem = linhas.slice().sort((a,b)=>b.resto-a.resto);
+  for(let i=0; faltam>0 && i<ordem.length; i++,faltam--) ordem[i].n += 1;
+  const dist = {};
+  linhas.forEach(x => { dist[x.alt] = {n:x.n, pct:(nGrupo || totalAlvo) > 0 ? x.n/(nGrupo || totalAlvo)*100 : 0}; });
+  return {dist, nRespostasValidas:linhas.reduce((s,x)=>s+x.n,0)};
 }
 
 function aplicarRecorteItem(q, recorte = getRecorteSelecionado()){
-  const r = localizarRegistroTop(q, recorte);
-  if(!r) return q;
+  // “Todos” deve usar exclusivamente a base geral do item.
+  if(recorte === 'todos') return Object.assign({}, q, {recorte_item:'todos', recorte_indisponivel:false});
 
-  const nGrupo = Number(r.n_grupo) || 0;
-  const nAcertos = numeroValido(r.n_acertos) ? Number(r.n_acertos) : 0;
-  const nSem = Number(r.n_sem_resposta) || 0;
+  const r = localizarRegistroTop(q, recorte);
+  if(!r){
+    console.warn('Recorte sem registro correspondente na base de alta performance', {
+      ano: ANO_ATUAL, recorte, area:q && q.area, prova:q && q.prova,
+      co_item:q && q.co_item, posicao_area:q && q.posicao_area, cor:q && q.cor
+    });
+    return Object.assign({}, q, {
+      recorte_item: recorte,
+      recorte_indisponivel: true
+    });
+  }
+
+  const nGrupo = Math.max(0, Math.round(Number(r.n_grupo) || 0));
+  const nAcertos = numeroValido(r.n_acertos) ? Math.max(0, Math.round(Number(r.n_acertos))) : 0;
+  const nSem = Math.max(0, Math.round(Number(r.n_sem_resposta) || 0));
+  const distNormalizada = montarDistribuicaoInteiraRecorte(r);
 
   return Object.assign({}, q, {
     estudantes: nGrupo,
@@ -1227,20 +1323,34 @@ function aplicarRecorteItem(q, recorte = getRecorteSelecionado()){
     erros: Math.max(nGrupo - nAcertos, 0),
     taxa_acerto: numeroValido(r.taxa_acerto) ? Number(r.taxa_acerto) : null,
     pct: numeroValido(r.taxa_acerto) ? Number(r.taxa_acerto) : null,
-    n_respostas_validas: Number(r.n_respostas_validas) || 0,
+    n_respostas_validas: distNormalizada.nRespostasValidas,
     n_sem_resposta: nSem,
     pct_sem_resposta: numeroValido(r.pct_sem_resposta) ? Number(r.pct_sem_resposta) : null,
     nota_corte_recorte: numeroValido(r.nota_corte) ? Number(r.nota_corte) : null,
     recorte_item: recorte,
-    alt_dist: {
-      A: {n:Number(r.n_alt_a)||0, pct:numeroValido(r.pct_alt_a)?Number(r.pct_alt_a):0},
-      B: {n:Number(r.n_alt_b)||0, pct:numeroValido(r.pct_alt_b)?Number(r.pct_alt_b):0},
-      C: {n:Number(r.n_alt_c)||0, pct:numeroValido(r.pct_alt_c)?Number(r.pct_alt_c):0},
-      D: {n:Number(r.n_alt_d)||0, pct:numeroValido(r.pct_alt_d)?Number(r.pct_alt_d):0},
-      E: {n:Number(r.n_alt_e)||0, pct:numeroValido(r.pct_alt_e)?Number(r.pct_alt_e):0}
-    }
+    alt_dist: distNormalizada.dist
   });
 }
+
+function auditarCoberturaRecortes(){
+  const recortes = ['top10','top5','top1','top100'];
+  const relatorio = [];
+  Object.keys(DBS).sort().forEach(ano => {
+    const db = DBS[ano];
+    const baseTop = Array.isArray(BASES_ITENS_TOP[ano]) ? BASES_ITENS_TOP[ano] : [];
+    const gerais = Object.values(db.questoes || {}).flat();
+    const linha = {ano:Number(ano), itensGerais:gerais.length, registrosTop:baseTop.length};
+    recortes.forEach(rec => {
+      const presentes = baseTop.filter(r => normalizarRecorteItem(r.recorte || r.criterio_top || r.tipo_recorte) === rec).length;
+      linha[rec] = presentes;
+      linha[`${rec}_disponivel`] = presentes > 0;
+    });
+    relatorio.push(linha);
+  });
+  console.table(relatorio);
+  return relatorio;
+}
+window.auditarCoberturaRecortes = auditarCoberturaRecortes;
 
 function getRecorteNoteHTML(q){
   const recorte = getRecorteSelecionado();
@@ -1254,6 +1364,20 @@ function getRecorteNoteHTML(q){
   const validas = numeroValido(q.n_respostas_validas)
     ? `<span class="recorte-pill">${fmtInt(q.n_respostas_validas)} respostas A–E</span>`
     : '';
+
+  if(q.recorte_indisponivel){
+    return `
+      <div class="recorte-note" style="border-left-color:var(--critico);border-color:rgba(255,77,106,0.35);background:rgba(255,77,106,0.08);">
+        <strong style="color:var(--critico)">Recorte não localizado na base</strong> — Não foi encontrado um registro correspondente para ${cfg.label} neste item/caderno. Os dados gerais não serão apresentados como se fossem do recorte.
+        <div class="recorte-meta">
+          <span class="recorte-pill">ENEM ${ANO_ATUAL}</span>
+          <span class="recorte-pill">${q.area || 'Área não identificada'}</span>
+          <span class="recorte-pill">Prova ${q.prova ?? '—'}</span>
+          <span class="recorte-pill">Item ${q.co_item ?? '—'}</span>
+          <span class="recorte-pill">Posição da área ${q.posicao_area ?? '—'}</span>
+        </div>
+      </div>`;
+  }
 
   return `
     <div class="recorte-note">
@@ -1293,7 +1417,7 @@ function fmtNum(x, casas = 2){
 
 function fmtInt(x){
   if(!numeroValido(x)) return '0';
-  return Number(x).toLocaleString('pt-BR');
+  return Math.round(Number(x)).toLocaleString('pt-BR', {maximumFractionDigits:0});
 }
 
 function getClasse(pct){
@@ -2037,6 +2161,25 @@ function buscar(){
   const aggCls=getClasse(agg.pct),aggLabel=getClasseLabel(aggCls),aggColor=getClasseColor(aggCls);
   const b=q.param_b;
   const itemAnulado = q.item_anulado === true || q.status_item === 'Item anulado';
+  if(q.recorte_indisponivel){
+    ph.style.display='none';
+    res.style.display='block';
+    res.innerHTML=`
+      <div class="result-hero">
+        <div>
+          <div class="result-meta">
+            <span class="tag tag-area">ENEM ${ano}</span>
+            <span class="tag tag-area">${AREA_NAMES[area]}</span>
+            <span class="tag tag-cor ${cor}">${COR_LABELS[cor]||cor}</span>
+            <span class="tag tag-tri">${recorteCfg.label}</span>
+          </div>
+          <div class="result-title">Questão ${pos} · ENEM ${ano} · Caderno ${cor.charAt(0)+cor.slice(1).toLowerCase()}</div>
+          <div class="result-sub">O item existe na base geral, mas não foi localizado na base do recorte selecionado.</div>
+        </div>
+      </div>
+      ${getRecorteNoteHTML(q)}`;
+    return;
+  }
   const difLabel=itemAnulado?'Item anulado — sem parâmetro B válido':(!numeroValido(b)?'Parâmetro B indisponível':(b<0?'⬇ Baixa (item acessível)':b<=1.5?'➡ Média (item moderado)':'⬆ Alta (item desafiador)'));
   const difColor=itemAnulado?'var(--text-muted)':(!numeroValido(b)?'var(--text-muted)':(b<0?'var(--forte)':b<=1.5?'var(--intermediario)':'var(--critico)'));
 
